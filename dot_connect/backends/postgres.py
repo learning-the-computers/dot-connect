@@ -10,5 +10,5 @@ def connect(**kwargs):
     config = load_config("POSTGRES")
 
     config.update(**kwargs)
-    
+
     return psycopg2.connect(**config)
