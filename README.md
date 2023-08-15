@@ -1,8 +1,7 @@
 # dot-connect
+[![tox](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml/badge.svg)](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml)
 
 A Python package designed to simplify the way you fetch connection configurations and establish connections to various database and cloud systems.
-
----
 
 ## 🚀 Features
 
