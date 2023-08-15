@@ -1,11 +1,9 @@
-from dot_connect.backends.snowflake import load_config
-from dot_connect.backends.snowflake import connect
-
-from snowflake.connector.connection import SnowflakeConnection
+import os
 
 from dotenv import load_dotenv
+from snowflake.connector.connection import SnowflakeConnection
 
-import os
+from dot_connect.backends.snowflake import connect, load_config
 
 
 def test_load_config():
