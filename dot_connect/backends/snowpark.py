@@ -36,9 +36,10 @@ def load_config():
         if k.startswith("SNOWFLAKE")
     }
 
+
 def connect():
     """Connect to Snowpark using the environment variables."""
     from snowflake.snowpark import Session
 
     config = load_config()
-    return Session.builder.configs(config).create() 
+    return Session.builder.configs(config).create()
