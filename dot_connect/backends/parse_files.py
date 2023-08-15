@@ -52,7 +52,6 @@ def read_yaml(file : str) -> Dict:
     """
     import yaml
 
-    params = {}
     with open(file, 'r') as f:
         connection_parameters = yaml.load(f, Loader = yaml.FullLoader)
 
@@ -85,12 +84,12 @@ def read_py(file : str) -> Dict: # NOT STARTED
 
     return connection_parameters
 
-def read_ini(file : str) -> Dict: # NOT STARTED
+def read_ini_conf_cfg(file : str) -> Dict:
     """
-    Returns contents of .py file as dict.
+    Returns contents of .ini, .conf, or .cfg file as dict.
 
     Returns:
-        file: Absolute or relative path to .py file.
+        file: Absolute or relative path to file.
 
     Example:
         If the json file contains:
@@ -106,8 +105,10 @@ def read_ini(file : str) -> Dict: # NOT STARTED
         "password": "password123"
         }
     """
-    import json
-    with open(file) as f:
-        connection_parameters = json.load(f)
+    import configparser
+
+    config = configparser.ConfigParser()
+    content = config.read(file)
+    connection_parameters = {s:dict(content.items(s)) for s in content.sections()}
 
     return connection_parameters
