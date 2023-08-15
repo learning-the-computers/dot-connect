@@ -26,9 +26,9 @@ def load_config():
     Example:
         If the environment variables are:
         SNOWFLAKE_USER="admin"
-        SNOWFLAKE_PASS="secret"
+        SNOWFLAKE_PASSWORD="secret"
         Then the output will be:
-        {"user": "admin", "pass": "secret"}
+        {"user": "admin", "password": "secret"}
     """
     return {
         "_".join(k.split("_")[1:]).lower(): v
@@ -79,9 +79,12 @@ def load_snowsql_config():
     return config_data
 
 
-def connect():
+def connect(**kwargs):
     """Connect to Snowflake using the environment variables."""
     import snowflake.connector
 
     config = load_config()
+
+    config.update(**kwargs)
+
     return snowflake.connector.connect(**config)
