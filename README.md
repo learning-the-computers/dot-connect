@@ -5,9 +5,9 @@ A Python package designed to simplify the way you fetch connection configuration
 
 ## 🚀 Features
 
-- **Unified Interface**: Single interface - no need to remember different APIs for different databases or cloud providers.
+- **Unified Interface**: Single interface - no need to remember different APIs for databases or cloud providers.
 - **Easy Configuration**: Fetch connection configurations from multiple sources like JSON files, environment variables, etc.
-- **Supported Backends**: Snowflake. More coming soon.
+- **Supported Backends**: MySQL, Postgres, and Snowflake. More coming soon.
 
 ---
 
