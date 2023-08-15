@@ -12,12 +12,14 @@ not apply to every user. Here are ways to use Docker to run these backends.
 
 Add the following .env file and provide values for compatibility with most backends. These
 align with the specific in the run commands below.
+```
 MYSQL_HOST=localhost
 MYSQL_USER=root
 MYSQL_PASSWORD=my-secret-pw
 POSTGRES_HOST=localhost
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=mysecretpassword
+```
 
 ## Postgres
 ```
