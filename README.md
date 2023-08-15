@@ -31,7 +31,7 @@ SNOWFLAKE_PASSWORD=password
 ```python
 import dot_connect
 
-con = dot_connect.snowflake.connect(database="", schema="magic")
+con = dot_connect.snowflake.connect()
 con.cursor().execute("SELECT 1;").fetchall()
 
 con = dot_connect.snowpark.connect()
