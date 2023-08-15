@@ -9,9 +9,9 @@ with contextlib.suppress(ImportError):
     load_dotenv(override=True)
 
 
-def load_configs():
+def load_config():
     """
-    Extract and returns Snowflake-related configurations from the environment variables.
+    Extract and returns Snowflake-related configuration from the environment variables.
 
     Scans the environment variables for keys that start with "SNOWFLAKE" and constructs
     a dictionary of configurations. The resulting dictionary has keys that are derived
