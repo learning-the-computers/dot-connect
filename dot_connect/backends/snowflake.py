@@ -37,11 +37,7 @@ def load_snowsql_config():
     parser = ConfigParser()
     parser.read(config_path)
 
-    config_data = {}
-    for section in parser.sections():
-        config_data[section] = dict(parser.items(section))
-
-    return config_data
+    return {section: dict(parser.items(section)) for section in parser.sections()}
 
 
 def connect(**kwargs):
