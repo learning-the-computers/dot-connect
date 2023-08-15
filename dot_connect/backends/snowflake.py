@@ -36,15 +36,17 @@ def load_config():
         if k.startswith("SNOWFLAKE")
     }
 
+
 import os
 from configparser import ConfigParser
+
 
 def load_snowsql_config():
     """
     Load configuration from the ~/.snowsql/config file.
 
     Returns:
-        dict: A dictionary containing the SnowSQL configurations. Each section 
+        dict: A dictionary containing the SnowSQL configurations. Each section
               in the config will be a key in the dictionary, and its value will
               be another dictionary containing that section's key-value pairs.
 
@@ -63,7 +65,7 @@ def load_snowsql_config():
         }
     """
     config_path = os.path.expanduser("~/.snowsql/config")
-    
+
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found at {config_path}")
 
