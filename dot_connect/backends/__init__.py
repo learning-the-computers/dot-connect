@@ -1,6 +1,11 @@
 """Module containing backend specific logic."""
-
+import contextlib
 import os
+
+with contextlib.suppress(ImportError):
+    from dotenv import load_dotenv
+
+    load_dotenv(override=True)
 
 
 def load_config(prefix: str):

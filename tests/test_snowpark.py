@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 from snowflake.snowpark import Session
 
 import dot_connect
-from dot_connect.backends import load_config
+from dot_connect import load_config
 
 
 def test_load_config():

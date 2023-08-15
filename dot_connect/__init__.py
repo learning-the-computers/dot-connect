@@ -1,5 +1,5 @@
 """The module for making connections easier."""
-from dot_connect.backends import mysql, postgres, snowflake, snowpark
+from dot_connect.backends import load_config, mysql, postgres, snowflake, snowpark
 
 
 def list_backends() -> list:

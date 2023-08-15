@@ -1,18 +1,9 @@
 """Utility module to handle Snowflake-related configurations."""
 
-import contextlib
-import os
-
-from dot_connect.backends import load_config
-
-with contextlib.suppress(ImportError):
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
-
-
 import os
 from configparser import ConfigParser
+
+from dot_connect.backends import load_config
 
 
 def load_snowsql_config():
@@ -74,7 +65,7 @@ def connect(**kwargs):
 
     Example:
         To connect to Snowflake using custom parameters:
-        >>> connection = connect(user='my_user', password='my_password', account='my_account')
+        >>> connection = connect(user='my_user', password='my_password', ...)
 
     Note:
         This function requires the 'snowflake-connector-python' package to be
