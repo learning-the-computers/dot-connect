@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-from snowflake.connector.connection import SnowflakeConnection
+from snowflake.snowpark import Session
 
-from dot_connect.backends.snowflake import connect, load_config
+from dot_connect.backends.snowpark import connect, load_config
 
 
 def test_load_config():
@@ -12,4 +12,4 @@ def test_load_config():
 def test_connect():
     con = connect()
     load_dotenv(override=True)
-    assert isinstance(con, SnowflakeConnection)
+    assert isinstance(con, Session)
