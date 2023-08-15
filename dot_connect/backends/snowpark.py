@@ -11,7 +11,7 @@ with contextlib.suppress(ImportError):
 
 def load_config():
     """
-    Extract and returns Snowflake-related configuration from the environment variables.
+    Extract and returns Snowpark-related configuration from the environment variables.
 
     Scans the environment variables for keys that start with "SNOWFLAKE" and constructs
     a dictionary of configurations. The resulting dictionary has keys that are derived
@@ -36,10 +36,9 @@ def load_config():
         if k.startswith("SNOWFLAKE")
     }
 
-
 def connect():
-    """Connect to Snowflake using the environment variables."""
-    import snowflake.connector
+    """Connect to Snowpark using the environment variables."""
+    from snowflake.snowpark import Session
 
     config = load_config()
-    return snowflake.connector.connect(**config)
+    return Session.builder.configs(config).create() 
