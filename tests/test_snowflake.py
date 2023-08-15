@@ -2,10 +2,11 @@ from dotenv import load_dotenv
 from snowflake.connector.connection import SnowflakeConnection
 
 import dot_connect
+from dot_connect.backends import load_config
 
 
 def test_load_config():
-    loaded_configs = dot_connect.snowflake.load_config()
+    loaded_configs = load_config("SNOWFLAKE")
     assert loaded_configs.get("account")
 
 

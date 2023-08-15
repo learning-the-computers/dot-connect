@@ -3,38 +3,12 @@
 import contextlib
 import os
 
+from dot_connect.backends import load_config
+
 with contextlib.suppress(ImportError):
     from dotenv import load_dotenv
 
     load_dotenv(override=True)
-
-
-def load_config():
-    """
-    Extract and returns Snowflake-related configuration from the environment variables.
-
-    Scans the environment variables for keys that start with "SNOWFLAKE" and constructs
-    a dictionary of configurations. The resulting dictionary has keys that are derived
-    from the environment variable keys by removing the "SNOWFLAKE" prefix and converting
-    to lowercase. The values remain unchanged.
-
-    Returns:
-        dict: A dictionary containing Snowflake-related configurations. For example,
-              if the environment has a variable SNOWFLAKE_USER="admin", the resulting
-              dictionary will have {"user": "admin"}.
-
-    Example:
-        If the environment variables are:
-        SNOWFLAKE_USER="admin"
-        SNOWFLAKE_PASSWORD="secret"
-        Then the output will be:
-        {"user": "admin", "password": "secret"}
-    """
-    return {
-        "_".join(k.split("_")[1:]).lower(): v
-        for k, v in os.environ.items()
-        if k.startswith("SNOWFLAKE")
-    }
 
 
 import os
@@ -80,10 +54,37 @@ def load_snowsql_config():
 
 
 def connect(**kwargs):
-    """Connect to Snowflake using the environment variables."""
+    """
+    Connect to Snowflake using the environment variables.
+
+    This function establishes a connection to a Snowflake database using the
+    specified connection parameters. It first loads a configuration dictionary
+    containing default values and then updates it with any keyword arguments
+    passed to the function. The resulting configuration is used to establish
+    the Snowflake connection.
+
+    Args:
+        **kwargs: Additional keyword arguments to customize the connection
+                  parameters. These arguments will be used to update the default
+                  configuration.
+
+    Returns:
+        snowflake.connector.connection.SnowflakeConnection: A connection object
+        representing the connection to the Snowflake database.
+
+    Example:
+        To connect to Snowflake using custom parameters:
+        >>> connection = connect(user='my_user', password='my_password', account='my_account')
+
+    Note:
+        This function requires the 'snowflake-connector-python' package to be
+        installed. Make sure to have the package installed before using this
+        function.
+
+    """
     import snowflake.connector
 
-    config = load_config()
+    config = load_config("SNOWFLAKE")
 
     config.update(**kwargs)
 
