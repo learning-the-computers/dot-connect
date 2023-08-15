@@ -21,3 +21,5 @@ jobs:
     - name: Testing
       run: |
         pytest
+      env:
+        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
