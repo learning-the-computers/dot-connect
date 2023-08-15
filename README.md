@@ -1,2 +1,2 @@
 # dot-connect
- Utilities for making connections easier. 
+ Utilities for making connections easier.
