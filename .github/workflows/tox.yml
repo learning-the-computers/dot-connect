@@ -1,6 +1,14 @@
 name: tox
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
