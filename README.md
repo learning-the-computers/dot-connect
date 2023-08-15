@@ -27,12 +27,27 @@ SNOWFLAKE_USER=username
 SNOWFLAKE_PASSWORD=password
 ```
 
-2. Connect and query Snowflake!
+2. Connect and query various backends!
 ```python
-from dot_connect.backends.snowflake import connect, load_config
+import dot_connect
 
-con = connect()
+con = dot_connect.snowflake.connect(database="", schema="magic")
 con.cursor().execute("SELECT 1;").fetchall()
+
+con = dot_connect.snowpark.connect()
+con.sql("SELECT 1").show()
+
+con = dot_connect.mysql.connect()
+
+cursor = con.cursor()
+cursor.execute("SELECT 1")
+cursor.fetchall()
+
+con = dot_connect.postgres.connect()
+
+cursor = con.cursor()
+cursor.execute("SELECT 1")
+cursor.fetchall()
 ```
 
 ## 🤝 Contributing
