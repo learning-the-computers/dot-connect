@@ -26,6 +26,7 @@ try:
 except ImportError:
     pass
 
+
 def list_backends() -> list:
     """List compatible dot-connect backends."""
     return ["mssql", "mysql", "postgres", "snowflake", "snowpark"]
