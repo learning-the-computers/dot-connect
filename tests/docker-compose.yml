@@ -10,3 +10,24 @@ services:
       - MSSQL_PID=Express
     ports:
       - "1433:1433"
+
+  postgresql:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      - POSTGRES_USER=your_postgres_user
+      - POSTGRES_PASSWORD=your_postgres_password
+      - POSTGRES_DB=your_postgres_database
+    ports:
+      - "5432:5432"
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_DATABASE=your_mysql_database
+      - MYSQL_USER=your_mysql_user
+      - MYSQL_PASSWORD=your_mysql_password
+    ports:
+      - "3306:3306"
