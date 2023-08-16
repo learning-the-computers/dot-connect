@@ -1,14 +1,14 @@
 """Utility for MSSQL connection management."""
+import pyodbc
 
 from dot_connect.backends import load_config
-import pyodbc
 
 
 def connect(**kwargs):
     """
     Establish a connection to a MSSQL database.
 
-    The function fetches default connection configurations and optionally updates 
+    The function fetches default connection configurations and optionally updates
     them with provided keyword arguments.
 
     Args:
@@ -18,16 +18,18 @@ def connect(**kwargs):
         pyodbc.Connection: Connection to the MSSQL database.
 
     Example:
-        >>> connection = connect(user='my_user', password='my_password', database='my_db')
+        >>> connection = connect(user='my_user',
+        >>>                      password='my_password',
+        >>>                      database='my_db')
 
     Note:
-        Ensure 'pyodbc' package is installed and relevant ODBC drivers for MSSQL are set up before utilizing this function.
+        Ensure 'pyodbc' package is installed and relevant ODBC drivers
+        for MSSQL are set up before utilizing this function.
     """
-    
     config = load_config("MSSQL")
 
     config.update(kwargs)
-    
-    connection_string = ';'.join([f'{key}={value}' for key, value in config.items()])
-    
+
+    connection_string = ";".join([f"{key}={value}" for key, value in config.items()])
+
     return pyodbc.connect(connection_string)
