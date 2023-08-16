@@ -39,4 +39,4 @@ docker run --name sql_server_container -e ACCEPT_EULA=Y -e SA_PASSWORD=YourStron
 ```
 
 ## Snowflake
-[Using the Python Connector](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-example) 
+[Using the Python Connector](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-example)
