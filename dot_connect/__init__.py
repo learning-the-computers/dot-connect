@@ -1,6 +1,7 @@
 """The module for making connections easier."""
 from dot_connect.backends import (  # noqa F401
     load_config,
+    mssql,
     mysql,
     postgres,
     snowflake,
@@ -10,4 +11,4 @@ from dot_connect.backends import (  # noqa F401
 
 def list_backends() -> list:
     """List compatible dot-connect backends."""
-    return ["mysql", "postgres", "snowflake", "snowpark"]
+    return ["mssql", "mysql", "postgres", "snowflake", "snowpark"]
