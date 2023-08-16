@@ -37,3 +37,6 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -d
 ```
 docker run --name sql_server_container -e ACCEPT_EULA=Y -e SA_PASSWORD=YourStrong!Passw0rd -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 ```
+
+## Snowflake
+[Using the Python Connector](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-example) 

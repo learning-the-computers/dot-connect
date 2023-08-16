@@ -5,26 +5,24 @@ A Python package designed to simplify the way you fetch connection configuration
 
 ## 🚀 Features
 
-- **Unified Interface**: Single interface - no need to remember different APIs for databases or cloud providers.
-- **Easy Configuration**: Fetch connection configurations from multiple sources like JSON files, environment variables, etc.
-- **Supported Backends**: MySQL, Postgres, and Snowflake. More coming soon.
+- **Unified Interface**: Say goodbye to juggling multiple APIs. With `dot_connect`, you get a standardized interface, making it easier to connect with various databases and cloud providers.
 
----
+- **Easy Configuration**: Fetch connection configurations with ease. `dot_connect` supports various sources like JSON files, environment variables, and more, ensuring flexibility and adaptability for your projects.
 
-## 💽 Installation
+- **Supported Backends**: Out of the box support for popular systems such as MySQL, Postgres, and Snowflake. We're continuously working to expand this list.
+
+- **Extensibility**: Designed with developers in mind, it's easy to extend and customize `dot_connect` for your specific needs.
+
+
+## 📦 Installation
 
 ```bash
 pip install dot-connect
 ```
 
-## 📚 Quickstart
+## 🔧 Usage
 
 1. Create a .env file.
-```
-SNOWFLAKE_ACCOUNT=orgname-accountname
-SNOWFLAKE_USER=username
-SNOWFLAKE_PASSWORD=password
-```
 
 2. Connect and query various backends!
 ```python
@@ -51,7 +49,7 @@ cursor.fetchall()
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions from the community. Whether it's a bug report, new feature, or improvement, your insights will help make dot_connect even better. Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
 
 ## ⚖️ License
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full text.
