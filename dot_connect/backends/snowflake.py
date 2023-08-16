@@ -2,6 +2,7 @@
 
 import contextlib
 import os
+from configparser import ConfigParser
 
 with contextlib.suppress(ImportError):
     from dotenv import load_dotenv
@@ -35,10 +36,6 @@ def load_config():
         for k, v in os.environ.items()
         if k.startswith("SNOWFLAKE")
     }
-
-
-import os
-from configparser import ConfigParser
 
 
 def load_snowsql_config():

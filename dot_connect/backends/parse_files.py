@@ -1,5 +1,5 @@
 """Utility module to config file contents as dictionaries."""
-from typing import Dict
+from typing import Any, Dict, Union
 
 
 def read_json(file: str) -> Dict:
@@ -25,7 +25,7 @@ def read_json(file: str) -> Dict:
     """
     import json
 
-    with open(file, "r") as f:
+    with open(file) as f:
         connection_parameters = json.load(f)
 
     return connection_parameters
@@ -51,7 +51,7 @@ def read_yaml(file: str) -> Dict:
     """
     import yaml
 
-    with open(file, "r") as f:
+    with open(file) as f:
         connection_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
     return connection_parameters
@@ -116,7 +116,7 @@ def read_ini_conf_cfg(file: str) -> Dict:
     return connection_parameters
 
 
-def parse_file(file: str, *args) -> Dict:
+def parse_file(file: str, *args) -> Union[Dict[Any, Any], str]:
     """
     Return contents of supported file format.
 
