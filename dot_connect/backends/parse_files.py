@@ -1,5 +1,6 @@
-"""Utility module to config file contents as dictionaries"""
+"""Utility module to config file contents as dictionaries."""
 from typing import Dict
+
 
 def read_json(file: str) -> Dict:
     """
@@ -29,6 +30,7 @@ def read_json(file: str) -> Dict:
 
     return connection_parameters
 
+
 def read_yaml(file: str) -> Dict:
     """
     Return contents of .yaml or .yml file as dict.
@@ -50,9 +52,10 @@ def read_yaml(file: str) -> Dict:
     import yaml
 
     with open(file, "r") as f:
-        connection_parameters = yaml.load(f, Loader = yaml.FullLoader)
+        connection_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
     return connection_parameters
+
 
 # def read_py(file : str) -> Dict: # NOT STARTED
 #     """
@@ -81,6 +84,7 @@ def read_yaml(file: str) -> Dict:
 
 #     return connection_parameters
 
+
 def read_ini_conf_cfg(file: str) -> Dict:
     """
     Return contents of .ini, .conf, or .cfg file as dict.
@@ -95,7 +99,7 @@ def read_ini_conf_cfg(file: str) -> Dict:
         "user": "JSMITH",
         "password": "password123"
         then returned dict will be
-        {credentials: 
+        {credentials:
             {
             "account": "abc.us-east-1",
             "user": "JSMITH",
@@ -107,9 +111,10 @@ def read_ini_conf_cfg(file: str) -> Dict:
 
     config = configparser.ConfigParser()
     config.read(file)
-    connection_parameters = {s:dict(config.items(s)) for s in config.sections()}
+    connection_parameters = {s: dict(config.items(s)) for s in config.sections()}
 
     return connection_parameters
+
 
 def parse_file(file: str, *args) -> Dict:
     """
@@ -135,8 +140,8 @@ def parse_file(file: str, *args) -> Dict:
             return f"File must be of type {supported_types}."
     else:
         raise TypeError("File argument must be string.")
-    
-    if args: # Traverse any nested keys passed
+
+    if args:  # Traverse any nested keys passed
         for k in args:
             if k in connection_parameters:
                 connection_parameters = connection_parameters[k]
