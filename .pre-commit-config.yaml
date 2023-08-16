@@ -34,6 +34,7 @@ repos:
     rev: v1.5.0
     hooks:
     -   id: mypy
+        additional_dependencies: [types-PyYAML]
 -   repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
     hooks:
