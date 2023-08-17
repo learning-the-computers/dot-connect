@@ -114,7 +114,7 @@ def parse_file(file: str, *args) -> Union[Dict[Any, Any], str]:
         elif file.endswith((".yml", ".yaml")):
             connection_parameters = read_yaml(file)
         elif file.endswith((".ini", ".cfg", ".conf")):
-            connection_parameters = read_yaml(file)
+            connection_parameters = read_ini_conf_cfg(file)
         else:
             return f"File must be of type {supported_types}."
     else:
