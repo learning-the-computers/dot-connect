@@ -126,14 +126,12 @@ def parse_file(file: str, *args) -> Union[Dict[Any, Any], str]:
                 connection_parameters = connection_parameters[k]
             else:
                 return connection_parameters
-        return connection_parameters
-    else:
-        return connection_parameters
+    return connection_parameters
 
 
 def load_config(prefix: str, file: Optional[str] = None, *args):
     """
-    Extract and returns configuration from the environment variables or local config file.
+    Extract and returns configuration from the env variables or local config file.
 
     For environment variables:
     Scans the environment variables for keys that start with "SNOWFLAKE" and constructs
