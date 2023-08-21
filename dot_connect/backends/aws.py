@@ -4,13 +4,19 @@ from dot_connect.backends import load_config
 
 
 def connect(service_name, **kwargs):
-    """
+    r"""
     Connect to an AWS service using boto3 with environment variables.
 
     This function establishes a connection to an AWS service using the specified
     connection parameters. It first loads a configuration dictionary containing
     default values and then updates it with any keyword arguments passed to the
     function. The resulting configuration is used to establish the AWS service connection.
+
+    The AWS SDK, `boto3`, follows a hierarchy to authenticate:
+
+    1. Environment Variables: AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+    2. AWS Configuration Files: ~/.aws/credentials (or %UserProfile%\.aws\credentials on Windows).
+    3. AWS CLI: Configuration set via `aws configure`.
 
     Args:
         service_name (str): The name of the AWS service to connect to (e.g., 's3', 'ec2').
@@ -41,5 +47,5 @@ def connect(service_name, **kwargs):
     # If resource method isn't available for a particular service, fallback to client.
     try:
         return boto3.resource(service_name, **config)
-    except boto3.exceptions.UnknownServiceError:
+    except Exception:
         return boto3.client(service_name, **config)

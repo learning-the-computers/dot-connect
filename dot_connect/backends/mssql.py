@@ -1,6 +1,9 @@
 """Utility for MSSQL connection management."""
-import pyodbc
 
+import contextlib
+
+with contextlib.suppress(ImportError):
+    import pyodbc
 from dot_connect.backends import load_config
 
 
