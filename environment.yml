@@ -1,8 +1,10 @@
 name: dot-connect
 channels:
   - defaults
+  - snowflake
 dependencies:
   - python>=3.8
+  - snowflake-snowpark-python>=1.5.1
   - pip
   - pip:
     - azure-core>=1.29.2
@@ -18,6 +20,5 @@ dependencies:
     - pytest>=7.4.0
     - python-dotenv>=1.0.0
     - snowflake-connector-python>=3.0.4
-    - snowflake-snowpark-python>=1.6.1
     - tox>=4.9.0
     - tox-gh-actions>=3.1.3
