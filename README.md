@@ -6,7 +6,7 @@ A Python package designed to simplify the way you fetch connection configuration
 
 ## 🚀 Features
 
-- **Unified Interface**: Say goodbye to juggling multiple APIs. With `dot_connect`, you get a standardized interface, making connecting with various databases and cloud providers easier.
+- **Unified Interface**: Say goodbye to juggling multiple APIs. Enjoy a standardized interface, making connecting with various databases and cloud providers easier.
 
 - **Easy Configuration**: Fetch connection configurations with ease. `dot_connect` supports various sources like JSON files, environment variables, and more, ensuring flexibility and adaptability for your projects.
 
@@ -22,29 +22,51 @@ pip install dot-connect
 
 ## 🔧 Usage
 
-1. Create a .env file.
+Using `dot_connect` is intuitive and straightforward. 
 
-2. Connect and query various backends!
+### Getting Things Set Up
+
+Before you begin, you can configure your environment variables by using a `.env` file or an alternative method. Additionally, you can utilize default authorization patterns supported by your chosen backend. `dot-connect` will prioritize credentials that are present in a `.env` file. 
+
+Below are step-by-step examples of how you can connect and query various backends:
+
+#### Snowflake
+
 ```python
 import dot_connect
 
 con = dot_connect.snowflake.connect()
-con.cursor().execute("SELECT 1;").fetchall()
+print(con.cursor().execute("SELECT 1;").fetchall())
+```
+
+#### Snowpark
+```python
+import dot_connect
 
 con = dot_connect.snowpark.connect()
 con.sql("SELECT 1").show()
+```
+
+#### MySQL
+```python
+import dot_connect
 
 con = dot_connect.mysql.connect()
-
 cursor = con.cursor()
 cursor.execute("SELECT 1")
-cursor.fetchall()
+result = cursor.fetchall()
+print(result)
+```
+
+#### PostgreSQL
+```python
+import dot_connect
 
 con = dot_connect.postgres.connect()
-
 cursor = con.cursor()
 cursor.execute("SELECT 1")
-cursor.fetchall()
+result = cursor.fetchall()
+print(result)
 ```
 
 ## 🤝 Contributing
