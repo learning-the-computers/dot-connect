@@ -2,12 +2,13 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    rev: v4.4.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-yaml
     -   id: check-added-large-files
+    -   id: requirements-txt-fixer
 -   repo: https://github.com/codespell-project/codespell
     rev: v2.2.5
     hooks:
@@ -31,7 +32,7 @@ repos:
     -   id: pyupgrade
         args: ["--py38-plus"]
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.0
+    rev: v1.5.1
     hooks:
     -   id: mypy
         additional_dependencies: [types-PyYAML]
