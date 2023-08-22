@@ -91,9 +91,7 @@ def read_ini_conf_cfg(file: str) -> Dict:
 
     config = configparser.ConfigParser()
     config.read(file)
-    connection_parameters = {s: dict(config.items(s)) for s in config.sections()}
-
-    return connection_parameters
+    return {s: dict(config.items(s)) for s in config.sections()}
 
 
 def parse_file(file: str, *args) -> Union[Dict[Any, Any], str]:
@@ -108,19 +106,18 @@ def parse_file(file: str, *args) -> Union[Dict[Any, Any], str]:
         file: Absolute or relative path to file.
 
     """
-    if isinstance(file, str):
-        supported_types = (".json", ".yaml", ".yml", ".ini", ".cfg", ".conf")
-        if file.endswith(".json"):
-            connection_parameters = read_json(file)
-        elif file.endswith((".yml", ".yaml")):
-            connection_parameters = read_yaml(file)
-        elif file.endswith((".ini", ".cfg", ".conf")):
-            connection_parameters = read_ini_conf_cfg(file)
-        else:
-            return f"File must be of type {supported_types}."
-    else:
+    if not isinstance(file, str):
         raise TypeError("File argument must be string.")
 
+    if file.endswith(".json"):
+        connection_parameters = read_json(file)
+    elif file.endswith((".yml", ".yaml")):
+        connection_parameters = read_yaml(file)
+    elif file.endswith((".ini", ".cfg", ".conf")):
+        connection_parameters = read_ini_conf_cfg(file)
+    else:
+        supported_types = (".json", ".yaml", ".yml", ".ini", ".cfg", ".conf")
+        return f"File must be of type {supported_types}."
     if args:  # Traverse any nested keys passed
         for k in args:
             if k in connection_parameters:
@@ -166,5 +163,4 @@ def load_config(prefix: str, file: Optional[str] = None, *args):
         }
 
     if file:
-        creds = parse_file(file, *args)
-        return creds
+        return parse_file(file, *args)
