@@ -38,6 +38,16 @@ def load_snowsql_config():
     return read_ini_conf_cfg(config_path)
 
 
+def format_url(**kwargs) -> str:
+    from snowflake.sqlalchemy import URL
+
+    connection_params = kwargs
+    connection_params["schema"] = connection_params.get("database").split("/")[1]
+    connection_params["database"] = connection_params.get("database").split("/")[0]
+
+    return URL(**connection_params)
+
+
 def connect(**kwargs):
     """
     Connect to Snowflake using the environment variables.
