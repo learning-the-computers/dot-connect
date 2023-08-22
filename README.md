@@ -22,11 +22,11 @@ pip install dot-connect
 
 ## 🔧 Usage
 
-Using `dot_connect` is intuitive and straightforward. 
+Using `dot_connect` is intuitive and straightforward.
 
 ### Getting Things Set Up
 
-Before you begin, you can configure your environment variables by using a `.env` file or an alternative method. Additionally, you can utilize default authorization patterns supported by your chosen backend. `dot-connect` will prioritize credentials that are present in a `.env` file. 
+Before you begin, you can configure your environment variables by using a `.env` file or an alternative method. Additionally, you can utilize default authorization patterns supported by your chosen backend. `dot-connect` will prioritize credentials that are present in a `.env` file.
 
 Below are step-by-step examples of how you can connect and query various backends:
 

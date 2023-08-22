@@ -42,7 +42,7 @@ def connect(**kwargs):
     """
     Connect to Snowflake using the environment variables.
 
-    Using the specified connection parameters, this function establishes a 
+    Using the specified connection parameters, this function establishes a
     connection to a Snowflake database. It first loads a configuration dictionary
     containing default values and then updates it with any keyword arguments
     passed to the function. The resulting configuration is used to establish
