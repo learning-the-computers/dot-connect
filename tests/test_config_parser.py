@@ -65,7 +65,6 @@ def test_read_ini(tmp_path):
 
 def test_load_config_from_env(monkeypatch):
     """Test extraction of config from environment variables using `load_config`."""
-
     monkeypatch.setenv("SNOWFLAKE_USER", "admin")
     monkeypatch.setenv("SNOWFLAKE_PASSWORD", "secret")
     result = load_config("SNOWFLAKE")

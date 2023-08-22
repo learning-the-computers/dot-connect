@@ -20,6 +20,7 @@ with contextlib.suppress(ImportError):
 with contextlib.suppress(ImportError):
     from dot_connect.backends import snowpark
 
+
 def list_backends() -> list:
     """List compatible dot-connect backends."""
     return [
