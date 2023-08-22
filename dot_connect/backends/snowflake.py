@@ -1,11 +1,15 @@
 """Utility module to handle Snowflake-related configurations."""
 
 import os
+from typing import TYPE_CHECKING, Dict
 
 from dot_connect.backends import load_config
 
+if TYPE_CHECKING:
+    from snowflake.connector import SnowflakeConnection
 
-def load_snowsql_config():
+
+def load_snowsql_config() -> Dict[str, Dict[str, str]]:
     """
     Load configuration from the ~/.snowsql/config file.
 
@@ -38,18 +42,23 @@ def load_snowsql_config():
     return read_ini_conf_cfg(config_path)
 
 
-def format_url(**kwargs):
+def format_url(**kwargs) -> str:
     """Format SQLAlchemy-compatible URL for Snowflake."""
     from snowflake.sqlalchemy import URL
 
     connection_params = kwargs
-    connection_params["schema"] = connection_params.get("database").split("/")[1]
-    connection_params["database"] = connection_params.get("database").split("/")[0]
+
+    database_value = connection_params.get("database")
+    if not database_value:
+        raise ValueError("Expected 'database' key in connection_params.")
+
+    connection_params["schema"] = database_value.split("/")[1]
+    connection_params["database"] = database_value.split("/")[0]
 
     return URL(**connection_params)
 
 
-def connect(**kwargs):
+def connect(**kwargs) -> SnowflakeConnection:
     """
     Connect to Snowflake using the environment variables.
 

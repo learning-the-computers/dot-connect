@@ -1,9 +1,14 @@
 """Utility module to handle Snowflake-related configurations."""
 
+from typing import TYPE_CHECKING
+
 from dot_connect.backends import load_config
 
+if TYPE_CHECKING:
+    from snowflake.snowpark import Session
 
-def connect(**kwargs):
+
+def connect(**kwargs) -> Session:
     """
     Connect to Snowflake using Snowpark with environment variables.
 
