@@ -1,12 +1,9 @@
 """Utility module to handle Snowflake-related configurations."""
 
 import os
-from typing import TYPE_CHECKING, Dict
+from typing import Dict
 
 from dot_connect.backends import load_config
-
-if TYPE_CHECKING:
-    from snowflake.connector import SnowflakeConnection
 
 
 def load_snowsql_config() -> Dict[str, Dict[str, str]]:
@@ -58,7 +55,7 @@ def format_url(**kwargs) -> str:
     return URL(**connection_params)
 
 
-def connect(**kwargs) -> SnowflakeConnection:
+def connect(**kwargs):
     """
     Connect to Snowflake using the environment variables.
 

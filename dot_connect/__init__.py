@@ -9,6 +9,33 @@ with contextlib.suppress(ImportError):
 
     load_dotenv(override=True)
 
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import aws  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import azure  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import impala  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import mssql  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import mysql  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import postgres  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import pyspark  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import snowflake  # noqa: F401
+
+with contextlib.suppress(ImportError):
+    from dot_connect.backends import snowpark  # noqa: F401
+
 
 def read_json(file: str) -> Dict:
     """
@@ -164,3 +191,8 @@ def load_config(prefix: str, file: Optional[str] = None, *args):
 
     if file:
         return parse_file(file, *args)
+
+
+def list_backends() -> list:
+    """List compatible dot-connect backends."""
+    return ["mysql", "postgres", "snowflake", "snowpark"]
