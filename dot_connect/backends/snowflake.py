@@ -1,7 +1,6 @@
 """Utility module to handle Snowflake-related configurations."""
 
 import os
-from configparser import ConfigParser
 
 from dot_connect.backends import load_config
 
@@ -29,15 +28,14 @@ def load_snowsql_config():
             }
         }
     """
+    from dot_connect import read_ini_conf_cfg
+
     config_path = os.path.expanduser("~/.snowsql/config")
 
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found at {config_path}")
 
-    parser = ConfigParser()
-    parser.read(config_path)
-
-    return {section: dict(parser.items(section)) for section in parser.sections()}
+    return read_ini_conf_cfg(config_path)
 
 
 def connect(**kwargs):

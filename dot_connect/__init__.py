@@ -1,5 +1,4 @@
 """The module for making connections easier."""
-
 import contextlib
 
 from dot_connect.backends import load_config
