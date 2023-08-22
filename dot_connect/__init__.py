@@ -195,4 +195,14 @@ def load_config(prefix: str, file: Optional[str] = None, *args):
 
 def list_backends() -> list:
     """List compatible dot-connect backends."""
-    return ["mysql", "postgres", "snowflake", "snowpark"]
+    return [
+        "aws",
+        "azure",
+        "impala",
+        "mssql",
+        "mysql",
+        "postgres",
+        "pyspark",
+        "snowflake",
+        "snowpark",
+    ]
