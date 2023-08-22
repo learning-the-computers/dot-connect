@@ -1,0 +1,24 @@
+name: dot-connect
+channels:
+  - defaults
+  - snowflake
+dependencies:
+  - python>=3.8
+  - snowflake-snowpark-python>=1.5.1
+  - pip
+  - pip:
+    - azure-core>=1.29.2
+    - azure-storage-blob>=12.17.0
+    - boto3>=1.28.30
+    - impyla>=0.18.0
+    - ipykernel>=6.25.1
+    - mysql-connector-python>=8.1.0
+    - pre-commit>=3
+    - psycopg2-binary>=2.9.7
+    - pyodbc>=4.0.39
+    - pyspark>=3.4.1
+    - pytest>=7.4.0
+    - python-dotenv>=1.0.0
+    - snowflake-connector-python>=3.0.4
+    - tox>=4.9.0
+    - tox-gh-actions>=3.1.3
