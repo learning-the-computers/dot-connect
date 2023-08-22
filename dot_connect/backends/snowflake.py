@@ -38,7 +38,8 @@ def load_snowsql_config():
     return read_ini_conf_cfg(config_path)
 
 
-def format_url(**kwargs) -> str:
+def format_url(**kwargs):
+    """Format SQLAlchemy-compatible URL for Snowflake."""
     from snowflake.sqlalchemy import URL
 
     connection_params = kwargs
