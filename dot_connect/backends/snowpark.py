@@ -12,6 +12,9 @@ def connect(**kwargs):
     arguments passed to the function. The resulting configuration is used to
     establish the Snowflake connection via Snowpark.
 
+    More information regarding creating Snowpark sessions can be found at
+    https://docs.snowflake.com/en/developer-guide/snowpark/python/creating-session
+
     Args:
         **kwargs: Additional keyword arguments to customize the connection
                   parameters. These arguments will be used to update the default
