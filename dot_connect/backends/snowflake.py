@@ -10,6 +10,9 @@ def load_snowsql_config() -> Dict[str, Dict[str, str]]:
     """
     Load configuration from the ~/.snowsql/config file.
 
+    More information about this specification can be found at
+    https://docs.snowflake.com/en/user-guide/snowsql-config#snowsql-config-file.
+
     Returns:
         dict: A dictionary containing the SnowSQL configurations. Each section
               in the config will be a key in the dictionary, and its value will
