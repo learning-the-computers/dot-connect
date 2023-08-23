@@ -1,47 +1,12 @@
 """Utility module to handle Snowflake-related configurations."""
 
-import contextlib
 import os
+from typing import Dict
 
-with contextlib.suppress(ImportError):
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
+from dot_connect.backends import load_config
 
 
-def load_config():
-    """
-    Extract and returns Snowflake-related configuration from the environment variables.
-
-    Scans the environment variables for keys that start with "SNOWFLAKE" and constructs
-    a dictionary of configurations. The resulting dictionary has keys that are derived
-    from the environment variable keys by removing the "SNOWFLAKE" prefix and converting
-    to lowercase. The values remain unchanged.
-
-    Returns:
-        dict: A dictionary containing Snowflake-related configurations. For example,
-              if the environment has a variable SNOWFLAKE_USER="admin", the resulting
-              dictionary will have {"user": "admin"}.
-
-    Example:
-        If the environment variables are:
-        SNOWFLAKE_USER="admin"
-        SNOWFLAKE_PASSWORD="secret"
-        Then the output will be:
-        {"user": "admin", "password": "secret"}
-    """
-    return {
-        "_".join(k.split("_")[1:]).lower(): v
-        for k, v in os.environ.items()
-        if k.startswith("SNOWFLAKE")
-    }
-
-
-import os
-from configparser import ConfigParser
-
-
-def load_snowsql_config():
+def load_snowsql_config() -> Dict[str, Dict[str, str]]:
     """
     Load configuration from the ~/.snowsql/config file.
 
@@ -64,26 +29,64 @@ def load_snowsql_config():
             }
         }
     """
+    from dot_connect import read_ini_conf_cfg
+
     config_path = os.path.expanduser("~/.snowsql/config")
 
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Config file not found at {config_path}")
 
-    parser = ConfigParser()
-    parser.read(config_path)
+    return read_ini_conf_cfg(config_path)
 
-    config_data = {}
-    for section in parser.sections():
-        config_data[section] = dict(parser.items(section))
 
-    return config_data
+def format_url(**kwargs) -> str:
+    """Format SQLAlchemy-compatible URL for Snowflake."""
+    from snowflake.sqlalchemy import URL
+
+    connection_params = kwargs
+
+    database_value = connection_params.get("database")
+    if not database_value:
+        raise ValueError("Expected 'database' key in connection_params.")
+
+    connection_params["schema"] = database_value.split("/")[1]
+    connection_params["database"] = database_value.split("/")[0]
+
+    return URL(**connection_params)
 
 
 def connect(**kwargs):
-    """Connect to Snowflake using the environment variables."""
+    """
+    Connect to Snowflake using the environment variables.
+
+    Using the specified connection parameters, this function establishes a
+    connection to a Snowflake database. It first loads a configuration dictionary
+    containing default values and then updates it with any keyword arguments
+    passed to the function. The resulting configuration is used to establish
+    the Snowflake connection.
+
+    Args:
+        **kwargs: Additional keyword arguments to customize the connection
+                  parameters. These arguments will be used to update the default
+                  configuration.
+
+    Returns:
+        snowflake.connector.connection.SnowflakeConnection: A connection object
+        representing the connection to the Snowflake database.
+
+    Example:
+        To connect to Snowflake using custom parameters:
+        >>> connection = connect(user='my_user', password='my_password', ...)
+
+    Note:
+        This function requires the 'snowflake-connector-python' package to be
+        installed. Make sure to have the package installed before using this
+        function.
+
+    """
     import snowflake.connector
 
-    config = load_config()
+    config = load_config("SNOWFLAKE")
 
     config.update(**kwargs)
 

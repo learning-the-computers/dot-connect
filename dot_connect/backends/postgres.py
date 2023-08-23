@@ -1,45 +1,40 @@
 """Utility module to handle PostgreSQL-related configurations."""
 
-import contextlib
-import os
-
-with contextlib.suppress(ImportError):
-    from dotenv import load_dotenv
-
-    load_dotenv(override=True)
+from dot_connect.backends import load_config
 
 
-def load_config():
+def connect(**kwargs):
     """
-    Extract and returns PostgreSQL-related configuration from the environment variables.
+    Connect to PostgreSQL using the environment variables.
 
-    Scans the environment variables for keys that start with "POSTGRES" and constructs
-    a dictionary of configurations. The resulting dictionary has keys that are derived
-    from the environment variable keys by removing the "POSTGRES" prefix and converting
-    to lowercase. The values remain unchanged.
+    This function establishes a connection to a PostgreSQL database using the
+    specified connection parameters. It first loads a configuration dictionary
+    containing default values and then updates it with any keyword arguments
+    passed to the function. The resulting configuration is used to establish
+    the PostgreSQL connection.
+
+    Args:
+        **kwargs: Additional keyword arguments to customize the connection
+                  parameters. These arguments will be used to update the default
+                  configuration.
 
     Returns:
-        dict: A dictionary containing PostgreSQL-related configurations. For example,
-              if the environment has a variable POSTGRES_USER="admin", the resulting
-              dictionary will have {"user": "admin"}.
+        psycopg2.extensions.connection: A connection object representing the
+        connection to the PostgreSQL database.
 
     Example:
-        If the environment variables are:
-        POSTGRES_USER="admin"
-        POSTGRES_PASSWORD="secret"
-        Then the output will be:
-        {"user": "admin", "password": "secret"}
+        To connect to PostgreSQL using custom parameters:
+        >>> connection = connect(user='my_user', password='my_password', dbname='my_db')
+
+    Note:
+        This function requires the 'psycopg2' package to be installed. Make sure
+        to have the package installed before using this function.
+
     """
-    return {
-        "_".join(k.split("_")[1:]).lower(): v
-        for k, v in os.environ.items()
-        if k.startswith("POSTGRES")
-    }
-
-
-def connect():
-    """Connect to PostgreSQL using the environment variables."""
     import psycopg2
 
-    config = load_config()
+    config = load_config("POSTGRES")
+
+    config.update(**kwargs)
+
     return psycopg2.connect(**config)
