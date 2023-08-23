@@ -1,13 +1,17 @@
 """Utility module to handle Snowflake-related configurations."""
 
 import os
+from typing import Dict
 
 from dot_connect.backends import load_config
 
 
-def load_snowsql_config():
+def load_snowsql_config() -> Dict[str, Dict[str, str]]:
     """
     Load configuration from the ~/.snowsql/config file.
+
+    More information about this specification can be found at
+    https://docs.snowflake.com/en/user-guide/snowsql-config#snowsql-config-file.
 
     Returns:
         dict: A dictionary containing the SnowSQL configurations. Each section
@@ -38,13 +42,24 @@ def load_snowsql_config():
     return read_ini_conf_cfg(config_path)
 
 
-def format_url(**kwargs):
-    """Format SQLAlchemy-compatible URL for Snowflake."""
+def format_url(**kwargs) -> str:
+    """
+    Format SQLAlchemy-compatible URL for Snowflake.
+
+    More information about this format specification can be
+    found at
+    https://docs.snowflake.com/en/developer-guide/python-connector/sqlalchemy#connection-parameters
+    """
     from snowflake.sqlalchemy import URL
 
     connection_params = kwargs
-    connection_params["schema"] = connection_params.get("database").split("/")[1]
-    connection_params["database"] = connection_params.get("database").split("/")[0]
+
+    database_value = connection_params.get("database")
+    if not database_value:
+        raise ValueError("Expected 'database' key in connection_params.")
+
+    connection_params["schema"] = database_value.split("/")[1]
+    connection_params["database"] = database_value.split("/")[0]
 
     return URL(**connection_params)
 
@@ -58,6 +73,10 @@ def connect(**kwargs):
     containing default values and then updates it with any keyword arguments
     passed to the function. The resulting configuration is used to establish
     the Snowflake connection.
+
+    More information about using the Snowflake Python Connector API can be
+    found at
+    https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api
 
     Args:
         **kwargs: Additional keyword arguments to customize the connection

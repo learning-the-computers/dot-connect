@@ -1,5 +1,4 @@
 """Utility module to handle Snowflake-related configurations."""
-
 from dot_connect.backends import load_config
 
 
@@ -12,6 +11,9 @@ def connect(**kwargs):
     dictionary containing default values and then updates it with any keyword
     arguments passed to the function. The resulting configuration is used to
     establish the Snowflake connection via Snowpark.
+
+    More information regarding creating Snowpark sessions can be found at
+    https://docs.snowflake.com/en/developer-guide/snowpark/python/creating-session
 
     Args:
         **kwargs: Additional keyword arguments to customize the connection

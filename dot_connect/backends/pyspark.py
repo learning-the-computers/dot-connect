@@ -39,10 +39,8 @@ def connect(**kwargs):
 
     config.update(**kwargs)
 
-    spark = (
+    return (
         SparkSession.builder.appName(config.get("appName", "MyApp"))
         .master(config.get("master", "local"))
         .getOrCreate()
     )
-
-    return spark
