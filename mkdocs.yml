@@ -1,0 +1,32 @@
+site_name: "My Docs"
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - content.code.annotate
+    - content.tabs.link
+    - content.code.copy
+    - header.autohide
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+nav:
+  - Home: index.md
+  - Backends:
+    - AWS: backends/aws.md
+    - Azure: backends/azure.md
+    - Impala: backends/impala.md
+    - Microsoft SQL Server: backends/mssql.md
+    - MySQL: backends/mysql.md
+    - PostgreSQL: backends/postgres.md
+    - PySpark: backends/pyspark.md
+    - Snowflake: backends/snowflake.md
+    - Snowpark: backends/snowpark.md
