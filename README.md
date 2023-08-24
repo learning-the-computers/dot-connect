@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://github.com/charleshardage/dot-connect/assets/119973756/7d52a0b4-a7c3-4df0-845d-0d73b0a20a42"
+</div>
+
+-----------------
+
 # dot-connect
 [![tox](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml/badge.svg)](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml)
 [![PyPI](https://img.shields.io/pypi/v/dot-connect.svg)](https://pypi.org/project/dot-connect)
