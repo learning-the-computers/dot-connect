@@ -30,4 +30,7 @@ nav:
     - PySpark: backends/pyspark.md
     - Snowflake: backends/snowflake.md
     - Snowpark: backends/snowpark.md
+  - Examples:
+    - Snowflake: examples/snowflake.md
+    - Snowpark: examples/snowpark.md
   - About: about.md
