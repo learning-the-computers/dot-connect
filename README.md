@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/charleshardage/dot-connect/assets/119973756/7d52a0b4-a7c3-4df0-845d-0d73b0a20a42"
+  <img src="https://github.com/charleshardage/dot-connect/assets/119973756/7d52a0b4-a7c3-4df0-845d-0d73b0a20a42"><br>
 </div>
 
 -----------------
