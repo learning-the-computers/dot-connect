@@ -77,7 +77,7 @@ print(result)
 
 ## 🤝 Contributing
 
-We welcome contributions from the community. Whether it's a bug report, a new feature, or an improvement, your insights will help make `dot_connect` even better. Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
+We welcome contributions from the community. Whether it's a bug report, a new feature, or an improvement, your insights will help make `dot_connect` even better. Please see our [contributing guidelines](docs/CONTRIBUTING.md) for more details.
 
 ## ⚖️ License
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full text.

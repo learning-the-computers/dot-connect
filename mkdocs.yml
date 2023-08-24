@@ -1,4 +1,4 @@
-site_name: "My Docs"
+site_name: "dot-connect"
 theme:
   name: material
   features:
@@ -30,3 +30,4 @@ nav:
     - PySpark: backends/pyspark.md
     - Snowflake: backends/snowflake.md
     - Snowpark: backends/snowpark.md
+  - About: about.md
