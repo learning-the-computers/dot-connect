@@ -183,6 +183,14 @@ def load_config(prefix: str, file: Optional[str] = None, *args):
     """
     if prefix:
         prefix = prefix.upper()
+
+        if prefix == "AWS":
+            return {
+                k.lower(): v
+                for k, v in os.environ.items()
+                if k in {"REGION_NAME", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY"}
+            }
+
         return {
             "_".join(k.split("_")[1:]).lower(): v
             for k, v in os.environ.items()

@@ -1,5 +1,7 @@
 """Utility module to handle AWS service-related configurations."""
 
+import boto3
+
 from dot_connect.backends import load_config
 
 
@@ -30,22 +32,18 @@ def connect(service_name, **kwargs):
 
     Example:
         To connect to S3 using custom parameters:
-        >>> s3_resource = connect('s3', aws_access_key_id='YOUR_ACCESS_KEY', aws_secret_access_key='YOUR_SECRET_KEY')
+        >>> s3_resource = connect('s3',
+        >>>                       aws_access_key_id='YOUR_ACCESS_KEY',
+        >>>                       aws_secret_access_key='YOUR_SECRET_KEY',
+        >>>                       region_name='YOUR_REGION',
+        >>> )
 
     Note:
         This function requires the 'boto3' package to be installed.
         Make sure to have the package installed before using this function.
-
     """
-    import boto3
-
-    config = load_config(service_name.upper())
+    config = load_config("AWS")
 
     config.update(**kwargs)
 
-    # It's a common practice to connect to AWS services using resources if available.
-    # If resource method isn't available for a particular service, fallback to client.
-    try:
-        return boto3.resource(service_name, **config)
-    except Exception:
-        return boto3.client(service_name, **config)
+    return boto3.client(service_name, **kwargs)
