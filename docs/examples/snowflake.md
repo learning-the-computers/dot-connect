@@ -13,7 +13,7 @@ and Key Pair Authentication.
 
 If you routinely connect to Snowflake using Python, you're likely familiar with the
 challenges of handling configurations, from hardcoding arguments in the
-`snowflake.snowflake.connect()` function to dynamically loading configurations via
+`snowflake.connector.connect()` function to dynamically loading configurations via
 SnowSQL, and even juggling environment variables or JSON files. But guess what? There's
 a simpler way!
 
@@ -69,7 +69,7 @@ our modules and read a CSV from S3, save it, and load it into Snowflake.
 >>>     "PUT file://campaign_spend.csv @DOT_CONNECT AUTO_COMPRESS=FALSE;"
 >>> ).fetchall()
 
->>> con.cursor().execute(
+>>> df = con.cursor().execute(
 >>>     """SELECT $1::VARCHAR(60) AS CAMPAIGN,
 >>>               $2::VARCHAR(60) AS CHANNEL,
 >>>               $3::DATE AS DATE,

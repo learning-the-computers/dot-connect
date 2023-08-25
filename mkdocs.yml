@@ -1,4 +1,5 @@
 site_name: "dot-connect"
+repo_url: https://github.com/learning-the-computers/dot-connect
 theme:
   name: material
   features:
@@ -14,6 +15,9 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+  icon:
+  logo: static/icons/dot-connect.png
+  favicon: static/icons/dot-connect.png
 plugins:
   - search
   - mkdocstrings:
