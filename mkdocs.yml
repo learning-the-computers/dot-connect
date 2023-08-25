@@ -36,6 +36,7 @@ nav:
     - Snowpark: backends/snowpark.md
   - Examples:
     - AWS: examples/aws.md
+    - Azure: examples/azure.md
     - Snowflake: examples/snowflake.md
     - Snowpark: examples/snowpark.md
   - About: about.md

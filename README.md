@@ -45,14 +45,6 @@ con = dot_connect.snowflake.connect()
 print(con.cursor().execute("SELECT 1;").fetchall())
 ```
 
-#### Snowpark
-```python
-import dot_connect
-
-con = dot_connect.snowpark.connect()
-con.sql("SELECT 1").show()
-```
-
 #### MySQL
 ```python
 import dot_connect

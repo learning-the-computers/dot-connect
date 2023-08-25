@@ -1,4 +1,4 @@
-"""Utility for MSSQL connection management."""
+"""Utility module to handle Microsoft SQL Server-related configurations."""
 
 import contextlib
 
