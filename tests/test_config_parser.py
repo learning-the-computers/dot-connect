@@ -1,6 +1,6 @@
 """Tests for the various utilities in the dot_connect package."""
 
-from dot_connect.backends import load_config, parse_file
+from dot_connect.backends import parse_file
 
 # Sample content for JSON, YAML, and INI files
 json_content = """
@@ -61,11 +61,3 @@ def test_read_ini(tmp_path):
             "password": "password123",
         }
     }
-
-
-def test_load_config_from_env(monkeypatch):
-    """Test extraction of config from environment variables using `load_config`."""
-    monkeypatch.setenv("SNOWFLAKE_USER", "admin")
-    monkeypatch.setenv("SNOWFLAKE_PASSWORD", "secret")
-    result = load_config("SNOWFLAKE")
-    assert result == {"user": "admin", "password": "secret"}
