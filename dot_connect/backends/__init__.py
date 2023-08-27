@@ -1,5 +1,7 @@
 """Module containing backend specific logic."""
+import configparser
 import contextlib
+import json
 import os
 from typing import Any, Dict, Optional, Union
 
@@ -30,8 +32,6 @@ def read_json(file: str) -> Dict:
             "password": "password123"
         }
     """
-    import json
-
     with open(file) as f:
         connection_parameters = json.load(f)
 
@@ -86,8 +86,6 @@ def read_ini_conf_cfg(file: str) -> Dict:
             }
         }
     """
-    import configparser
-
     config = configparser.ConfigParser()
     config.read(file)
     return {s: dict(config.items(s)) for s in config.sections()}
