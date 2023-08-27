@@ -1,5 +1,7 @@
 """Tests for the Postgres connection utility in the dot_connect package."""
 
+import psycopg2.extensions
+
 import dot_connect
 from dot_connect import load_config
 
@@ -28,3 +30,19 @@ def test_connect():
     cursor = con.cursor()
     cursor.execute("SELECT 1")
     assert cursor.fetchall()
+    con.close()
+
+
+def test_connection_type():
+    """
+    Test if the create_connection function returns an object of type psycopg2.extensions.connection.
+
+    This test invokes the create_connection function and checks the type of its return value.
+    The test will pass if the returned object is an instance of psycopg2.extensions.connection.
+    Otherwise, it will fail with an informative error message.
+    """
+    con = dot_connect.postgres.connect()
+    assert isinstance(
+        con, psycopg2.extensions.connection
+    ), f"Expected a psycopg2 connection, got {type(con)}"
+    con.close()

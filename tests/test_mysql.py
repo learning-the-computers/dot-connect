@@ -1,5 +1,7 @@
 """Tests for the MySQL connection utility in the dot_connect package."""
 
+import mysql.connector
+
 import dot_connect
 from dot_connect import load_config
 
@@ -28,3 +30,18 @@ def test_connect():
     cursor = con.cursor()
     cursor.execute("SELECT 1")
     assert cursor.fetchall()
+
+
+def test_connection_type():
+    """
+    Test if the create_connection function returns an object of type mysql.connector.connection_cext.CMySQLConnection.
+
+    This test invokes the create_connection function and checks the type of its return value.
+    The test will pass if the returned object is an instance of mysql.connector.connection_cext.CMySQLConnection.
+    Otherwise, it will fail with an informative error message.
+    """
+    con = dot_connect.mysql.connect()
+    assert isinstance(
+        con, mysql.connector.connection_cext.CMySQLConnection
+    ), f"Expected a CMySQLConnection connection, got {type(con)}"
+    con.close()
