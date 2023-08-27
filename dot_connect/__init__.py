@@ -16,9 +16,6 @@ with contextlib.suppress(ImportError):
     from dot_connect.backends import azure  # noqa: F401
 
 with contextlib.suppress(ImportError):
-    from dot_connect.backends import impala  # noqa: F401
-
-with contextlib.suppress(ImportError):
     from dot_connect.backends import mssql  # noqa: F401
 
 with contextlib.suppress(ImportError):
@@ -206,7 +203,6 @@ def list_backends() -> list:
     return [
         "aws",
         "azure",
-        "impala",
         "mssql",
         "mysql",
         "postgres",
