@@ -1,5 +1,7 @@
 """Utility module to handle Azure Blob Storage service-related configurations."""
 
+from azure.storage.blob import BlobServiceClient
+
 from dot_connect.backends import load_config
 
 
@@ -30,8 +32,6 @@ def connect_blob_service(**kwargs):
         Make sure to have the package installed before using this function.
 
     """
-    from azure.storage.blob import BlobServiceClient
-
     config = load_config("AZURE_BLOB_STORAGE")
 
     config.update(**kwargs)

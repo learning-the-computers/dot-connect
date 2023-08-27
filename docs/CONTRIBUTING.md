@@ -20,12 +20,14 @@ POSTGRES_HOST=localhost
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=mysecretpassword
 SA_PASSWORD=YourStrong!Passw0rd
+SNOWFLAKE_ACCOUNT=youraccount
+SNOWFLAKE_USER=youruser
+SNOWFLAKE_PASSWORD=yourpassword
+SNOWFLAKE_DATABASE=yourdatabase
+SNOWFLAKE_SCHEMA=yourschema
+SNOWFLAKE_ROLE=yourrole
+SNOWFLAKE_WAREHOUSE=yourwarehouse
 ACCEPT_EULA=Y
-```
-
-## Postgres
-```
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
 ```
 
 ## MySQL
@@ -38,5 +40,13 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -d
 docker run --name sql_server_container -e ACCEPT_EULA=Y -e SA_PASSWORD=YourStrong!Passw0rd -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
+## Postgres
+```
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+
 ## Snowflake
 [Using the Python Connector](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-example)
+
+## Snowpark
+[Creating a Session for Snowpark Python](https://docs.snowflake.com/en/developer-guide/snowpark/python/creating-session)

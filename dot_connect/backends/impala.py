@@ -1,5 +1,7 @@
 """Utility module to handle Impala-related configurations."""
 
+from impala.dbapi import connect as impala_connect
+
 from dot_connect.backends import load_config
 
 
@@ -31,8 +33,6 @@ def connect(**kwargs):
         to have the package installed before using this function.
 
     """
-    from impala.dbapi import connect as impala_connect
-
     config = load_config("IMPALA")
 
     config.update(**kwargs)

@@ -1,11 +1,13 @@
 """Utility module to handle MySQL-related configurations."""
 
+import mysql.connector
+
 from dot_connect.backends import load_config
 
 
-def connect(**kwargs):
+def connect(**kwargs) -> mysql.connector.connection_cext.CMySQLConnection:
     """
-    Connect to MySQL using the environment variables.
+    Connect to MySQL using environment variables.
 
     This function establishes a connection to a MySQL database using the specified
     connection parameters. It first loads a configuration dictionary containing
@@ -30,8 +32,6 @@ def connect(**kwargs):
         Make sure to have the package installed before using this function.
 
     """
-    import mysql.connector
-
     config = load_config("MYSQL")
 
     config.update(**kwargs)

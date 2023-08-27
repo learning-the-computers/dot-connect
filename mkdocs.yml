@@ -1,4 +1,5 @@
-site_name: "My Docs"
+site_name: "dot-connect"
+repo_url: https://github.com/learning-the-computers/dot-connect
 theme:
   name: material
   features:
@@ -14,6 +15,9 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+  icon:
+  logo: static/icons/dot-connect.png
+  favicon: static/icons/dot-connect.png
 plugins:
   - search
   - mkdocstrings:
@@ -30,3 +34,9 @@ nav:
     - PySpark: backends/pyspark.md
     - Snowflake: backends/snowflake.md
     - Snowpark: backends/snowpark.md
+  - Examples:
+    - AWS: examples/aws.md
+    - Azure: examples/azure.md
+    - Snowflake: examples/snowflake.md
+    - Snowpark: examples/snowpark.md
+  - About: about.md

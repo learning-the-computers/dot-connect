@@ -1,9 +1,11 @@
 """Utility module to handle PostgreSQL-related configurations."""
 
+import psycopg2
+
 from dot_connect.backends import load_config
 
 
-def connect(**kwargs):
+def connect(**kwargs) -> psycopg2.extensions.connection:
     """
     Connect to PostgreSQL using the environment variables.
 
@@ -31,8 +33,6 @@ def connect(**kwargs):
         to have the package installed before using this function.
 
     """
-    import psycopg2
-
     config = load_config("POSTGRES")
 
     config.update(**kwargs)

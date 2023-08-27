@@ -5,7 +5,8 @@
 -----------------
 
 # dot-connect
-[![tox](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml/badge.svg)](https://github.com/learning-the-computers/dot-connect/actions/workflows/tox.yml)
+[![pytest + coverage](https://github.com/learning-the-computers/dot-connect/actions/workflows/pytest_cov.yml/badge.svg)](https://github.com/learning-the-computers/dot-connect/actions/workflows/pytest_cov.yml)
+[![codecov](https://codecov.io/github/learning-the-computers/dot-connect/graph/badge.svg?token=BRBGOLAYLE)](https://codecov.io/github/learning-the-computers/dot-connect)
 [![PyPI](https://img.shields.io/pypi/v/dot-connect.svg)](https://pypi.org/project/dot-connect)
 
 A Python package designed to simplify the way you fetch connection configurations and establish connections to various databases and cloud systems.
@@ -32,7 +33,7 @@ Using `dot_connect` is intuitive and straightforward.
 
 ### Getting Things Set Up
 
-Before you begin, you can configure your environment variables by using a `.env` file or an alternative method. Additionally, you can utilize default authorization patterns supported by your chosen backend. `dot-connect` will prioritize credentials that are present in a `.env` file.
+Before you begin, you can configure your environment variables by using a `.env` file or an alternative method. Additionally, you can utilize default authorization patterns supported by your chosen backend. `dot-connect` will prioritize credentials in a `.env` file.
 
 Below are step-by-step examples of how you can connect and query various backends:
 
@@ -43,14 +44,6 @@ import dot_connect
 
 con = dot_connect.snowflake.connect()
 print(con.cursor().execute("SELECT 1;").fetchall())
-```
-
-#### Snowpark
-```python
-import dot_connect
-
-con = dot_connect.snowpark.connect()
-con.sql("SELECT 1").show()
 ```
 
 #### MySQL
@@ -77,7 +70,7 @@ print(result)
 
 ## 🤝 Contributing
 
-We welcome contributions from the community. Whether it's a bug report, a new feature, or an improvement, your insights will help make `dot_connect` even better. Please see our [contributing guidelines](CONTRIBUTING.md) for more details.
+We welcome contributions from the community. Whether it's a bug report, a new feature, or an improvement, your insights will help make `dot_connect` even better. For more details, please see our [contributing guidelines](docs/CONTRIBUTING.md).
 
 ## ⚖️ License
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for the full text.
