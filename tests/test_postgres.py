@@ -1,11 +1,13 @@
 """Tests for the Postgres connection utility in the dot_connect package."""
 
 import psycopg2.extensions
+import pytest
 
 import dot_connect
 from dot_connect import load_config
 
 
+@pytest.mark.skip(reason="Docker + Postgres.")
 def test_load_config():
     """
     Validate the 'load_config' function for PostgreSQL configurations.
@@ -18,6 +20,7 @@ def test_load_config():
     assert loaded_configs.get("password")
 
 
+@pytest.mark.skip(reason="Docker + Postgres.")
 def test_connect():
     """
     Assess the PostgreSQL connection via the 'connect' function.
@@ -33,6 +36,7 @@ def test_connect():
     con.close()
 
 
+@pytest.mark.skip(reason="Docker + Postgres.")
 def test_connection_type():
     """
     Test if the create_connection function returns an object of type psycopg2.extensions.connection.

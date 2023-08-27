@@ -1,11 +1,13 @@
 """Tests for the MySQL connection utility in the dot_connect package."""
 
 import mysql.connector
+import pytest
 
 import dot_connect
 from dot_connect import load_config
 
 
+@pytest.mark.skip(reason="Docker + MySQL")
 def test_load_config():
     """
     Test if the 'load_config' function retrieves valid MySQL configuration.
@@ -18,6 +20,7 @@ def test_load_config():
     assert loaded_configs.get("password")
 
 
+@pytest.mark.skip(reason="Docker + MySQL")
 def test_connect():
     """
     Test a successful MySQL connection using the 'connect' function.
@@ -32,6 +35,7 @@ def test_connect():
     assert cursor.fetchall()
 
 
+@pytest.mark.skip(reason="Docker + MySQL")
 def test_connection_type():
     """
     Test if the create_connection function returns an object of type mysql.connector.connection_cext.CMySQLConnection.
