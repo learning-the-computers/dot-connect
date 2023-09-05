@@ -2,7 +2,6 @@
 
 import secrets
 import string
-from typing import Optional
 
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import serialization
@@ -39,29 +38,21 @@ def strip_public_key_headers(public_key: bytes) -> str:
     return "".join(public_key.decode("utf-8").split("\n")[1:-2])
 
 
-def generate_key_pair(password: Optional[bytes] = None) -> tuple:
+def generate_key_pair(password: str) -> tuple:
     """
     Generate a key pair.
 
     Args:
-        password (Optional[Union[str, bytes]]): Password to encrypt the private key with. Defaults to None.
+        password (str): Password to encrypt the private key with.
 
     Returns:
         tuple: Tuple containing the encrypted private key and the public key.
     """
-    if password:
-        ENCRYPTED_KEY_PASSPHRASE = password
-    else:
-        ENCRYPTED_KEY_PASSPHRASE = None
     private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
     encrypted_private_key = private_key.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.PKCS8,
-        encryption_algorithm=serialization.BestAvailableEncryption(
-            ENCRYPTED_KEY_PASSPHRASE
-        )
-        if ENCRYPTED_KEY_PASSPHRASE
-        else serialization.NoEncryption(),
+        encryption_algorithm=serialization.BestAvailableEncryption(password),
     )
     public_key = private_key.public_key().public_bytes(
         encoding=serialization.Encoding.PEM,
@@ -94,3 +85,31 @@ def serialize_key(data: bytes, password: bytes) -> bytes:
     )
 
     return pkb
+
+
+def create_aws_secret(client, secret_name: str, secret_binary: bytes):
+    """
+    Create an AWS Secrets Manager secret with the provided name and binary secret value.
+
+    Args:
+        secret_name (str): The name of the secret to be created or updated.
+        secret_binary (bytes): The binary secret value to be stored in the secret.
+
+    Raises:
+        ClientError: If an error occurs while creating or updating the secret, such as a
+        ResourceExistsException, it will be caught and handled.
+
+    Notes:
+        If a secret with the same name already exists, this function will update the
+        existing secret with the new binary value.
+
+    Example:
+    create_aws_secret("my-secret", b"my-secret-value")
+    """
+    from botocore.exceptions import ClientError
+
+    try:
+        client.create_secret(Name=secret_name, SecretBinary=secret_binary)
+    except ClientError as e:
+        if e.response.get("Error").get("Code") == "ResourceExistsException":
+            client.update_secret(SecretId=secret_name, SecretBinary=secret_binary)
