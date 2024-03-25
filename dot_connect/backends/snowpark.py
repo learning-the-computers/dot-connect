@@ -1,4 +1,5 @@
 """Utility module to handle Snowflake-related configurations."""
+
 from dot_connect.backends import load_config
 
 
