@@ -1,4 +1,5 @@
 """Tests for the AWS connection utility in the dot_connect package."""
+
 from unittest.mock import patch
 
 import dot_connect
